@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>הבק אופיס שלי - קורסים לעסקים</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="student-dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="main-nav">
+            <div class="logo">הבק אופיס שלי</div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> דף הבית</a>
+                <a href="student-dashboard.html" class="nav-link active"><i class="fas fa-user-graduate"></i> הקורסים שלי</a>
+            </div>
+        </nav>
+    </header>
+    <main class="student-dashboard-container">
+        <section class="my-courses-section">
+            <h2>הקורסים שלי</h2>
+            <div id="myCoursesList" class="courses-list">
+                <!-- קורסים שנרכשו יופיעו כאן -->
+            </div>
+        </section>
+        <section class="all-courses-section">
+            <h2>כל הקורסים באתר</h2>
+            <div id="allCoursesList" class="courses-list">
+                <!-- כל הקורסים יופיעו כאן -->
+            </div>
+        </section>
+    </main>
+
+    <!-- מודאל תצוגת קורס לרכישה -->
+    <div class="modal" id="coursePreviewModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="previewCourseTitle"></h3>
+                <button class="close-btn" id="closePreviewModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="previewCourseDescription"></p>
+                <div class="course-video-container">
+                    <video id="previewCourseVideo" controls style="width:100%;max-width:400px;"></video>
+                </div>
+                <div class="course-purchase-info">
+                    <span id="previewCoursePrice" class="course-price"></span>
+                    <button class="btn btn-primary" id="purchaseCourseBtn">רכוש קורס</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="student-dashboard.js"></script>
+</body>
+</html> 

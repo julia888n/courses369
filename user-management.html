@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ניהול משתמשים - קורסים לעסקים</title>
+    <link rel="stylesheet" href="user-management.css">
+</head>
+<body>
+    <header>
+        <nav class="admin-nav">
+            <div class="logo">קורסים לעסקים</div>
+            <div class="nav-actions">
+                <button class="btn btn-primary" id="addUserBtn">הוספת משתמש</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="admin-container">
+        <aside class="admin-sidebar">
+            <div class="filters">
+                <h2>סינון משתמשים</h2>
+                <div class="filter-group">
+                    <label for="roleFilter">תפקיד</label>
+                    <select id="roleFilter">
+                        <option value="all">הכל</option>
+                        <option value="student">תלמיד</option>
+                        <option value="instructor">מרצה</option>
+                        <option value="admin">מנהל</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="statusFilter">סטטוס</label>
+                    <select id="statusFilter">
+                        <option value="all">הכל</option>
+                        <option value="active">פעיל</option>
+                        <option value="inactive">לא פעיל</option>
+                        <option value="blocked">חסום</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="searchInput">חיפוש</label>
+                    <input type="text" id="searchInput" placeholder="חיפוש לפי שם או אימייל">
+                </div>
+            </div>
+        </aside>
+
+        <section class="admin-content">
+            <div class="users-header">
+                <h2>רשימת משתמשים</h2>
+                <div class="users-actions">
+                    <button class="btn btn-secondary" id="exportBtn">ייצוא ל-Excel</button>
+                    <button class="btn btn-secondary" id="importBtn">ייבוא מ-Excel</button>
+                </div>
+            </div>
+            <div class="users-table-container">
+                <table class="users-table">
+                    <thead>
+                        <tr>
+                            <th>שם מלא</th>
+                            <th>אימייל</th>
+                            <th>תפקיד</th>
+                            <th>סטטוס</th>
+                            <th>תאריך הצטרפות</th>
+                            <th>פעולות</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody">
+                        <!-- משתמשים יתווספו כאן דינמית -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- מודל הוספת/עריכת משתמש -->
+    <div class="modal" id="userModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">הוספת משתמש חדש</h3>
+                <button class="close-btn">&times;</button>
+            </div>
+            <form id="userForm">
+                <div class="form-group">
+                    <label for="fullName">שם מלא</label>
+                    <input type="text" id="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">אימייל</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">סיסמה</label>
+                    <input type="password" id="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="role">תפקיד</label>
+                    <select id="role" required>
+                        <option value="student">תלמיד</option>
+                        <option value="instructor">מרצה</option>
+                        <option value="admin">מנהל</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="status">סטטוס</label>
+                    <select id="status" required>
+                        <option value="active">פעיל</option>
+                        <option value="inactive">לא פעיל</option>
+                        <option value="blocked">חסום</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">שמירה</button>
+                    <button type="button" class="btn btn-secondary" id="cancelBtn">ביטול</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="user-management.js"></script>
+</body>
+</html> 

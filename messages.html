@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>הודעות - מערכת ניהול קורסים</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="messages.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="main-nav">
+            <div class="logo">מערכת ניהול קורסים</div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    דף הבית
+                </a>
+                <a href="courses.html" class="nav-link">
+                    <i class="fas fa-graduation-cap"></i>
+                    קורסים
+                </a>
+                <a href="students.html" class="nav-link">
+                    <i class="fas fa-users"></i>
+                    תלמידים
+                </a>
+                <a href="payments.html" class="nav-link">
+                    <i class="fas fa-credit-card"></i>
+                    תשלומים
+                </a>
+                <a href="reports.html" class="nav-link">
+                    <i class="fas fa-chart-bar"></i>
+                    דוחות
+                </a>
+                <a href="messages.html" class="nav-link">
+                    <i class="fas fa-envelope"></i>
+                    הודעות
+                </a>
+                <a href="settings.html" class="nav-link">
+                    <i class="fas fa-cog"></i>
+                    הגדרות
+                </a>
+            </div>
+            <div class="user-menu">
+                <div class="notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </div>
+                <div class="user-profile">
+                    <span>ישראל ישראלי</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="admin-container">
+        <div class="admin-sidebar">
+            <div class="sidebar-section">
+                <h3>סינון הודעות</h3>
+                <div class="form-group">
+                    <label for="folder">תיקייה</label>
+                    <select id="folder">
+                        <option value="inbox">נכנסות</option>
+                        <option value="sent">נשלחו</option>
+                        <option value="draft">טיוטות</option>
+                        <option value="trash">אשפה</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="search">חיפוש</label>
+                    <input type="text" id="search" placeholder="חפש בהודעות...">
+                </div>
+                <div class="form-group">
+                    <label for="date-range">טווח תאריכים</label>
+                    <div class="date-inputs">
+                        <input type="date" id="start-date">
+                        <input type="date" id="end-date">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="admin-content">
+            <div class="content-header">
+                <h2>הודעות</h2>
+                <div class="header-actions">
+                    <button class="btn btn-primary" onclick="composeMessage()">
+                        <i class="fas fa-pen"></i>
+                        הודעה חדשה
+                    </button>
+                </div>
+            </div>
+
+            <div class="messages-container">
+                <div class="messages-list">
+                    <!-- הודעות יוצגו כאן באופן דינמי -->
+                </div>
+                <div class="message-content">
+                    <div class="message-placeholder">
+                        <i class="fas fa-envelope-open"></i>
+                        <p>בחר הודעה להצגה</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- מודל כתיבת הודעה -->
+    <div class="modal" id="composeModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>הודעה חדשה</h3>
+                <button class="close-btn" onclick="closeComposeModal()">&times;</button>
+            </div>
+            <form id="composeForm">
+                <div class="form-group">
+                    <label for="recipient">נמען</label>
+                    <select id="recipient" required>
+                        <option value="">בחר נמען...</option>
+                        <!-- נמענים יתווספו כאן באופן דינמי -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="subject">נושא</label>
+                    <input type="text" id="subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">תוכן ההודעה</label>
+                    <textarea id="message" rows="10" required></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="saveDraft()">
+                        <i class="fas fa-save"></i>
+                        שמור כטיוטה
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        שליחה
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="messages.js"></script>
+</body>
+</html> 

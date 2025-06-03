@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ניהול תשלומים - קורסים לעסקים</title>
+    <link rel="stylesheet" href="payments.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="main-nav">
+            <div class="logo">מערכת ניהול קורסים</div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    דף הבית
+                </a>
+                <a href="courses.html" class="nav-link">
+                    <i class="fas fa-graduation-cap"></i>
+                    קורסים
+                </a>
+                <a href="students.html" class="nav-link">
+                    <i class="fas fa-users"></i>
+                    תלמידים
+                </a>
+                <a href="payments.html" class="nav-link">
+                    <i class="fas fa-credit-card"></i>
+                    תשלומים
+                </a>
+                <a href="reports.html" class="nav-link">
+                    <i class="fas fa-chart-bar"></i>
+                    דוחות
+                </a>
+                <a href="messages.html" class="nav-link">
+                    <i class="fas fa-envelope"></i>
+                    הודעות
+                </a>
+                <a href="settings.html" class="nav-link">
+                    <i class="fas fa-cog"></i>
+                    הגדרות
+                </a>
+            </div>
+            <div class="user-menu">
+                <div class="notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </div>
+                <div class="user-profile">
+                    <span>ישראל ישראלי</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="admin-container">
+        <aside class="admin-sidebar">
+            <div class="filter-section">
+                <h3>סינון תשלומים</h3>
+                <div class="form-group">
+                    <label for="statusFilter">סטטוס תשלום</label>
+                    <select id="statusFilter">
+                        <option value="all">הכל</option>
+                        <option value="paid">שולם</option>
+                        <option value="pending">ממתין</option>
+                        <option value="overdue">פג תוקף</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="studentFilter">תלמיד</label>
+                    <select id="studentFilter">
+                        <option value="all">הכל</option>
+                        <!-- יתמלא דינמית -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="courseFilter">קורס</label>
+                    <select id="courseFilter">
+                        <option value="all">הכל</option>
+                        <!-- יתמלא דינמית -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="dateRange">טווח תאריכים</label>
+                    <div class="date-range">
+                        <input type="date" id="startDate">
+                        <input type="date" id="endDate">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="searchPayment">חיפוש</label>
+                    <input type="text" id="searchPayment" placeholder="חיפוש לפי מספר תשלום או תלמיד...">
+                </div>
+            </div>
+        </aside>
+
+        <section class="admin-content">
+            <div class="payments-container">
+                <div class="payments-header">
+                    <h2>ניהול תשלומים</h2>
+                    <div class="payments-stats">
+                        <div class="stat-card">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <div class="stat-info">
+                                <span class="stat-value" id="totalIncome">₪0</span>
+                                <span class="stat-label">סה"כ הכנסות</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-clock"></i>
+                            <div class="stat-info">
+                                <span class="stat-value" id="pendingAmount">₪0</span>
+                                <span class="stat-label">תשלומים ממתינים</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <div class="stat-info">
+                                <span class="stat-value" id="overdueAmount">₪0</span>
+                                <span class="stat-label">תשלומים שפג תוקפם</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-calendar-alt"></i>
+                            <div class="stat-info">
+                                <span class="stat-value" id="monthlyIncome">₪0</span>
+                                <span class="stat-label">הכנסות החודש</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="payments-table-container">
+                    <table class="payments-table">
+                        <thead>
+                            <tr>
+                                <th>מספר תשלום</th>
+                                <th>תלמיד</th>
+                                <th>קורס</th>
+                                <th>סכום</th>
+                                <th>תאריך</th>
+                                <th>סטטוס</th>
+                                <th>פעולות</th>
+                            </tr>
+                        </thead>
+                        <tbody id="paymentsTableBody">
+                            <!-- הנתונים יוכנסו דינמית -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- מודל הוספה/עריכת תשלום -->
+    <div class="modal" id="paymentModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">הוספת תשלום</h3>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="paymentForm">
+                    <div class="form-group">
+                        <label for="studentSelect">תלמיד</label>
+                        <select id="studentSelect">
+                            <!-- יתמלא דינמית -->
+                        </select>
+                        <input type="text" id="studentName" placeholder="או כתוב שם תלמיד חופשי" style="margin-top:4px;" />
+                    </div>
+                    <div class="form-group">
+                        <label for="courseSelect">קורס</label>
+                        <select id="courseSelect" multiple required>
+                            <!-- יתמלא דינמית -->
+                        </select>
+                        <small style="font-size:0.8em;color:#888;">ניתן לבחור יותר מקורס אחד (Ctrl/Command + קליק)</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">סכום</label>
+                        <input type="number" id="amount" required min="0" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="paymentDate">תאריך תשלום</label>
+                        <input type="date" id="paymentDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="paymentStatusSelect">סטטוס</label>
+                        <select id="paymentStatusSelect" required>
+                            <option value="paid">שולם</option>
+                            <option value="pending">ממתין</option>
+                            <option value="overdue">פג תוקף</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="paymentMethod">אמצעי תשלום</label>
+                        <select id="paymentMethod" required>
+                            <option value="cash">מזומן</option>
+                            <option value="credit">כרטיס אשראי</option>
+                            <option value="transfer">העברה בנקאית</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">הערות</label>
+                        <textarea id="notes" rows="3"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">שמור</button>
+                        <button type="button" class="btn btn-secondary" onclick="closeModal('paymentModal')">ביטול</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- מודל פרטי תשלום -->
+    <div class="modal" id="paymentDetailsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>פרטי תשלום</h3>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="payment-details">
+                    <div class="detail-item">
+                        <span class="label">מספר תשלום:</span>
+                        <span id="detailPaymentNumber"></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">תלמיד:</span>
+                        <span id="detailStudent"></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">קורס:</span>
+                        <span id="detailCourse"></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">סכום:</span>
+                        <span id="detailAmount"></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">תאריך:</span>
+                        <span id="detailDate"></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">סטטוס:</span>
+                        <span id="detailStatus"></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">אמצעי תשלום:</span>
+                        <span id="detailPaymentMethod"></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">הערות:</span>
+                        <span id="detailNotes"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="payments.js"></script>
+</body>
+</html> 

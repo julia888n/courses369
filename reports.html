@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוחות - קורסים לעסקים</title>
+    <link rel="stylesheet" href="reports.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <nav class="main-nav">
+            <div class="logo">מערכת ניהול קורסים</div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    דף הבית
+                </a>
+                <a href="courses.html" class="nav-link">
+                    <i class="fas fa-graduation-cap"></i>
+                    קורסים
+                </a>
+                <a href="students.html" class="nav-link">
+                    <i class="fas fa-users"></i>
+                    תלמידים
+                </a>
+                <a href="payments.html" class="nav-link">
+                    <i class="fas fa-credit-card"></i>
+                    תשלומים
+                </a>
+                <a href="reports.html" class="nav-link">
+                    <i class="fas fa-chart-bar"></i>
+                    דוחות
+                </a>
+                <a href="messages.html" class="nav-link">
+                    <i class="fas fa-envelope"></i>
+                    הודעות
+                </a>
+                <a href="settings.html" class="nav-link">
+                    <i class="fas fa-cog"></i>
+                    הגדרות
+                </a>
+            </div>
+            <div class="user-menu">
+                <div class="notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </div>
+                <div class="user-profile">
+                    <span>ישראל ישראלי</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="admin-container">
+        <aside class="admin-sidebar">
+            <div class="filter-section">
+                <h3>סינון דוחות</h3>
+                <div class="form-group">
+                    <label for="reportType">סוג דוח</label>
+                    <select id="reportType">
+                        <option value="income">דוח הכנסות</option>
+                        <option value="students">דוח תלמידים</option>
+                        <option value="courses">דוח קורסים</option>
+                        <option value="teachers">דוח מורים</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="dateRange">טווח תאריכים</label>
+                    <div class="date-range">
+                        <input type="date" id="startDate">
+                        <input type="date" id="endDate">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="groupBy">קבץ לפי</label>
+                    <select id="groupBy">
+                        <option value="day">יום</option>
+                        <option value="week">שבוע</option>
+                        <option value="month">חודש</option>
+                        <option value="year">שנה</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" id="generateReportBtn">
+                    <i class="fas fa-chart-bar"></i>
+                    צור דוח
+                </button>
+            </div>
+        </aside>
+
+        <section class="admin-content">
+            <div class="reports-container">
+                <div class="report-header">
+                    <h2 id="reportTitle">דוח הכנסות</h2>
+                    <div class="report-summary">
+                        <div class="summary-item">
+                            <span class="label">סה"כ:</span>
+                            <span class="value" id="totalAmount">₪0</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">ממוצע:</span>
+                            <span class="value" id="averageAmount">₪0</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">סכום מקסימלי:</span>
+                            <span class="value" id="maxAmount">₪0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="reportChart"></canvas>
+                </div>
+
+                <div class="report-table-container">
+                    <table class="report-table">
+                        <thead>
+                            <tr id="reportTableHeader">
+                                <!-- הכותרות יוכנסו דינמית -->
+                            </tr>
+                        </thead>
+                        <tbody id="reportTableBody">
+                            <!-- הנתונים יוכנסו דינמית -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="reports.js"></script>
+</body>
+</html> 

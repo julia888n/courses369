@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>התראות - מערכת ניהול קורסים</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="notifications.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="admin-nav">
+        <div class="nav-logo">
+            <h1>מערכת ניהול קורסים</h1>
+        </div>
+        <div class="nav-links">
+            <a href="index.html"><i class="fas fa-home"></i> דף הבית</a>
+            <a href="courses.html"><i class="fas fa-book"></i> קורסים</a>
+            <a href="students.html"><i class="fas fa-users"></i> סטודנטים</a>
+            <a href="payments.html"><i class="fas fa-money-bill"></i> תשלומים</a>
+            <a href="reports.html"><i class="fas fa-chart-bar"></i> דוחות</a>
+            <a href="messages.html"><i class="fas fa-envelope"></i> הודעות</a>
+            <a href="settings.html"><i class="fas fa-cog"></i> הגדרות</a>
+        </div>
+        <div class="nav-actions">
+            <button class="notifications-button">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">3</span>
+            </button>
+            <div class="notifications-list"></div>
+            <div class="user-menu">
+                <img src="https://via.placeholder.com/40" alt="משתמש" class="user-avatar">
+                <span class="user-name">מנהל מערכת</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <div class="admin-sidebar">
+            <div class="sidebar-section">
+                <h3>סינון התראות</h3>
+                <div class="form-group">
+                    <label for="status">סטטוס</label>
+                    <select id="status">
+                        <option value="all">הכל</option>
+                        <option value="unread">לא נקראו</option>
+                        <option value="read">נקראו</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="type">סוג</label>
+                    <select id="type">
+                        <option value="all">הכל</option>
+                        <option value="payment">תשלומים</option>
+                        <option value="course">קורסים</option>
+                        <option value="system">מערכת</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="priority">עדיפות</label>
+                    <select id="priority">
+                        <option value="all">הכל</option>
+                        <option value="high">גבוהה</option>
+                        <option value="medium">בינונית</option>
+                        <option value="low">נמוכה</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="start-date">מתאריך</label>
+                    <input type="date" id="start-date">
+                </div>
+                <div class="form-group">
+                    <label for="end-date">עד תאריך</label>
+                    <input type="date" id="end-date">
+                </div>
+                <div class="form-group">
+                    <label for="search">חיפוש</label>
+                    <input type="text" id="search" placeholder="חפש בהתראות...">
+                </div>
+            </div>
+        </div>
+
+        <div class="admin-content">
+            <div class="content-header">
+                <h2>התראות</h2>
+                <div class="header-actions">
+                    <button class="btn btn-primary" onclick="markAllAsRead()">
+                        <i class="fas fa-check-double"></i>
+                        סמן הכל כנקרא
+                    </button>
+                    <button class="btn btn-danger" onclick="deleteAllRead()">
+                        <i class="fas fa-trash"></i>
+                        מחק התראות נקראות
+                    </button>
+                </div>
+            </div>
+
+            <div class="notifications-stats">
+                <div class="stat-card">
+                    <i class="fas fa-bell"></i>
+                    <div class="stat-info">
+                        <h3>סה"כ התראות</h3>
+                        <p class="total-count">0</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-envelope"></i>
+                    <div class="stat-info">
+                        <h3>לא נקראו</h3>
+                        <p class="unread-count">0</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <div class="stat-info">
+                        <h3>עדיפות גבוהה</h3>
+                        <p class="high-priority-count">0</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notifications-list-container">
+                <!-- התראות יוצגו כאן באופן דינמי -->
+            </div>
+        </div>
+    </div>
+
+    <script src="notifications.js"></script>
+</body>
+</html> 

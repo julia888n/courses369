@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>הגדרות מערכת - קורסים לעסקים</title>
+    <link rel="stylesheet" href="settings.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="main-nav">
+            <div class="logo">מערכת ניהול קורסים</div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    דף הבית
+                </a>
+                <a href="courses.html" class="nav-link">
+                    <i class="fas fa-graduation-cap"></i>
+                    קורסים
+                </a>
+                <a href="students.html" class="nav-link">
+                    <i class="fas fa-users"></i>
+                    תלמידים
+                </a>
+                <a href="payments.html" class="nav-link">
+                    <i class="fas fa-credit-card"></i>
+                    תשלומים
+                </a>
+                <a href="reports.html" class="nav-link">
+                    <i class="fas fa-chart-bar"></i>
+                    דוחות
+                </a>
+                <a href="messages.html" class="nav-link">
+                    <i class="fas fa-envelope"></i>
+                    הודעות
+                </a>
+                <a href="settings.html" class="nav-link">
+                    <i class="fas fa-cog"></i>
+                    הגדרות
+                </a>
+            </div>
+            <div class="user-menu">
+                <div class="notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </div>
+                <div class="user-profile">
+                    <span>ישראל ישראלי</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="admin-container">
+        <aside class="admin-sidebar">
+            <div class="settings-nav">
+                <button class="nav-item active" data-section="general">
+                    <i class="fas fa-cog"></i>
+                    הגדרות כלליות
+                </button>
+                <button class="nav-item" data-section="notifications">
+                    <i class="fas fa-bell"></i>
+                    התראות
+                </button>
+                <button class="nav-item" data-section="payments">
+                    <i class="fas fa-credit-card"></i>
+                    תשלומים
+                </button>
+                <button class="nav-item" data-section="appearance">
+                    <i class="fas fa-paint-brush"></i>
+                    עיצוב
+                </button>
+                <button class="nav-item" data-section="security">
+                    <i class="fas fa-shield-alt"></i>
+                    אבטחה
+                </button>
+            </div>
+        </aside>
+
+        <section class="admin-content">
+            <div class="settings-container">
+                <!-- הגדרות כלליות -->
+                <div class="settings-section active" id="general">
+                    <h2>הגדרות כלליות</h2>
+                    <form class="settings-form">
+                        <div class="form-group">
+                            <label for="siteName">שם האתר</label>
+                            <input type="text" id="siteName" name="siteName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="siteDescription">תיאור האתר</label>
+                            <textarea id="siteDescription" name="siteDescription" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">דוא"ל ליצירת קשר</label>
+                            <input type="email" id="contactEmail" name="contactEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactPhone">טלפון ליצירת קשר</label>
+                            <input type="tel" id="contactPhone" name="contactPhone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="timezone">אזור זמן</label>
+                            <select id="timezone" name="timezone" required>
+                                <option value="Asia/Jerusalem">ישראל (UTC+3)</option>
+                                <option value="UTC">UTC</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- הגדרות התראות -->
+                <div class="settings-section" id="notifications">
+                    <h2>הגדרות התראות</h2>
+                    <form class="settings-form">
+                        <div class="form-group">
+                            <label>התראות דוא"ל</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="emailNotifications" value="newStudent">
+                                    הרשמת תלמיד חדש
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="emailNotifications" value="paymentReceived">
+                                    קבלת תשלום
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="emailNotifications" value="courseStart">
+                                    התחלת קורס
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="emailNotifications" value="courseEnd">
+                                    סיום קורס
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>התראות מערכת</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="systemNotifications" value="lowBalance">
+                                    יתרה נמוכה
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="systemNotifications" value="failedPayment">
+                                    תשלום נכשל
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="systemNotifications" value="systemUpdate">
+                                    עדכון מערכת
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- הגדרות תשלומים -->
+                <div class="settings-section" id="payments">
+                    <h2>הגדרות תשלומים</h2>
+                    <form class="settings-form">
+                        <div class="form-group">
+                            <label for="currency">מטבע</label>
+                            <select id="currency" name="currency" required>
+                                <option value="ILS">שקל (₪)</option>
+                                <option value="USD">דולר ($)</option>
+                                <option value="EUR">אירו (€)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>אמצעי תשלום</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="paymentMethods" value="credit">
+                                    כרטיס אשראי
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="paymentMethods" value="transfer">
+                                    העברה בנקאית
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="paymentMethods" value="cash">
+                                    מזומן
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="taxRate">אחוז מע"מ</label>
+                            <input type="number" id="taxRate" name="taxRate" min="0" max="100" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="paymentTerms">תנאי תשלום</label>
+                            <textarea id="paymentTerms" name="paymentTerms" rows="4"></textarea>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- הגדרות עיצוב -->
+                <div class="settings-section" id="appearance">
+                    <h2>הגדרות עיצוב</h2>
+                    <form class="settings-form">
+                        <div class="form-group">
+                            <label for="primaryColor">צבע ראשי</label>
+                            <input type="color" id="primaryColor" name="primaryColor" value="#4CAF50">
+                        </div>
+                        <div class="form-group">
+                            <label for="secondaryColor">צבע משני</label>
+                            <input type="color" id="secondaryColor" name="secondaryColor" value="#2196F3">
+                        </div>
+                        <div class="form-group">
+                            <label for="fontFamily">גופן</label>
+                            <select id="fontFamily" name="fontFamily" required>
+                                <option value="Segoe UI">Segoe UI</option>
+                                <option value="Arial">Arial</option>
+                                <option value="Helvetica">Helvetica</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="logo">לוגו</label>
+                            <input type="file" id="logo" name="logo" accept="image/*">
+                        </div>
+                        <div class="form-group">
+                            <label for="favicon">אייקון</label>
+                            <input type="file" id="favicon" name="favicon" accept="image/*">
+                        </div>
+                    </form>
+                </div>
+
+                <!-- הגדרות אבטחה -->
+                <div class="settings-section" id="security">
+                    <h2>הגדרות אבטחה</h2>
+                    <form class="settings-form">
+                        <div class="form-group">
+                            <label for="sessionTimeout">זמן התנתקות אוטומטי (דקות)</label>
+                            <input type="number" id="sessionTimeout" name="sessionTimeout" min="5" max="120" required>
+                        </div>
+                        <div class="form-group">
+                            <label>הגבלות סיסמה</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="passwordRestrictions" value="uppercase">
+                                    אותיות גדולות
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="passwordRestrictions" value="numbers">
+                                    מספרים
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="passwordRestrictions" value="special">
+                                    תווים מיוחדים
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="minPasswordLength">אורך סיסמה מינימלי</label>
+                            <input type="number" id="minPasswordLength" name="minPasswordLength" min="6" max="20" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="maxLoginAttempts">מספר ניסיונות התחברות מקסימלי</label>
+                            <input type="number" id="maxLoginAttempts" name="maxLoginAttempts" min="3" max="10" required>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="settings.js"></script>
+</body>
+</html> 
