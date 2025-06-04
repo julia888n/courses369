@@ -222,17 +222,31 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('userForm').addEventListener('submit', (e) => {
         e.preventDefault();
 
+        const fullName = document.getElementById('fullName').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const userType = document.getElementById('userTypeSelect').value;
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        const status = document.getElementById('userStatusSelect').value;
+
+        if (password !== confirmPassword) {
+            alert('הסיסמאות אינן תואמות');
+            return;
+        }
+
         const userData = {
-            id: isEditing ? currentUser.id : Date.now(),
-            fullName: document.getElementById('fullName').value,
-            email: document.getElementById('email').value,
-            password: document.getElementById('password').value,
-            role: document.getElementById('role').value,
-            status: document.getElementById('status').value,
-            joinDate: isEditing ? currentUser.joinDate : new Date().toISOString()
+            id: isEditing && currentUser ? currentUser.id : Date.now(),
+            fullName,
+            email,
+            phone,
+            role: userType,
+            password,
+            status,
+            joinDate: isEditing && currentUser ? currentUser.joinDate : new Date().toISOString().split('T')[0]
         };
 
-        if (isEditing) {
+        if (isEditing && currentUser) {
             const index = users.findIndex(u => u.id === currentUser.id);
             users[index] = userData;
         } else {

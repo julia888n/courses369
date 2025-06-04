@@ -51,17 +51,22 @@ async function login(email, password) {
         // שמירת פרטי המשתמש
         currentUser = user;
         localStorage.setItem('currentUser', JSON.stringify(currentUser));
-        localStorage.setItem('userRole', user.type);
+        localStorage.setItem('userRole', user.role);
 
         // הפניה לדף המתאים לפי סוג המשתמש
-        if (user.type === 'admin') {
-            window.location.href = 'index.html';
-        } else if (user.type === 'student') {
-            window.location.href = 'student-dashboard.html';
-        } else if (user.type === 'teacher') {
-            window.location.href = 'teacher-dashboard.html';
-        } else {
-            throw new Error('סוג משתמש לא תקין');
+        switch (user.role) {
+            case 'admin':
+                window.location.href = 'index.html';
+                break;
+            case 'student':
+                window.location.href = 'student-dashboard.html';
+                break;
+            case 'teacher':
+            case 'instructor':
+                window.location.href = 'teacher-dashboard.html';
+                break;
+            default:
+                throw new Error('סוג משתמש לא תקין');
         }
     } catch (error) {
         showNotification(error.message);
@@ -87,12 +92,17 @@ document.addEventListener('DOMContentLoaded', function() {
         currentUser = JSON.parse(savedUser);
         const userRole = localStorage.getItem('userRole');
         
-        if (userRole === 'admin') {
-            window.location.href = 'index.html';
-        } else if (userRole === 'student') {
-            window.location.href = 'student-dashboard.html';
-        } else if (userRole === 'teacher') {
-            window.location.href = 'teacher-dashboard.html';
+        switch (userRole) {
+            case 'admin':
+                window.location.href = 'index.html';
+                break;
+            case 'student':
+                window.location.href = 'student-dashboard.html';
+                break;
+            case 'teacher':
+            case 'instructor':
+                window.location.href = 'teacher-dashboard.html';
+                break;
         }
     }
 }); 

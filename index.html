@@ -46,8 +46,26 @@
                 <p>הוספה, עריכה ומחיקה של משתמשים והרשאות</p>
             </a>
         </div>
+
+        <div class="user-menu">
+            <div class="notifications">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">3</span>
+            </div>
+            <div class="user-profile">
+                <span>ישראל ישראלי</span>
+                <button id="logoutBtn" class="btn btn-secondary" style="margin-right: 1rem;">התנתקות</button>
+            </div>
+        </div>
     </main>
 
     <script src="script.js"></script>
+    <script>
+    document.getElementById('logoutBtn').onclick = function() {
+        localStorage.removeItem('currentUser');
+        localStorage.removeItem('userRole');
+        window.location.href = 'login.html';
+    };
+    </script>
 </body>
 </html> 
