@@ -95,10 +95,17 @@ body {
 .date-range {
     display: flex;
     gap: 1rem;
+    max-width: 100%;
+    margin-right: 12px;
+    justify-content: flex-end;
 }
 
 .date-range input {
-    flex: 1;
+    flex: unset;
+    width: 130px;
+    max-width: 100%;
+    direction: rtl;
+    text-align: right;
 }
 
 /* תוכן ראשי */

@@ -49,7 +49,7 @@ body {
 .admin-sidebar {
     width: 300px;
     background-color: white;
-    padding: 2rem;
+    padding: 1.5rem;
     border-left: 1px solid var(--border-color);
 }
 

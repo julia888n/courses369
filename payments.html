@@ -98,7 +98,13 @@
         <section class="admin-content">
             <div class="payments-container">
                 <div class="payments-header">
-                    <h2>ניהול תשלומים</h2>
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <h2>ניהול תשלומים</h2>
+                        <button class="btn btn-primary" id="addPaymentBtn" type="button">
+                            <i class="fas fa-plus"></i>
+                            הוסף תשלום חדש
+                        </button>
+                    </div>
                     <div class="payments-stats">
                         <div class="stat-card">
                             <i class="fas fa-money-bill-wave"></i>
@@ -194,11 +200,33 @@
                     </div>
                     <div class="form-group">
                         <label for="paymentMethod">אמצעי תשלום</label>
-                        <select id="paymentMethod" required>
+                        <select id="paymentMethod" required onchange="toggleCreditFields()">
                             <option value="cash">מזומן</option>
                             <option value="credit">כרטיס אשראי</option>
                             <option value="transfer">העברה בנקאית</option>
                         </select>
+                    </div>
+                    <div id="creditFields" style="display:none; margin-bottom: 1rem;">
+                        <div class="form-group">
+                            <label for="cardNumber">מספר כרטיס</label>
+                            <input type="text" id="cardNumber" maxlength="19" pattern="[0-9]{13,19}">
+                        </div>
+                        <div class="form-group">
+                            <label for="cardHolder">שם בעל הכרטיס</label>
+                            <input type="text" id="cardHolder">
+                        </div>
+                        <div class="form-group">
+                            <label for="cardId">ת.ז. בעל הכרטיס</label>
+                            <input type="text" id="cardId" maxlength="9" pattern="[0-9]{5,9}">
+                        </div>
+                        <div class="form-group">
+                            <label for="cardExpiry">תוקף</label>
+                            <input type="text" id="cardExpiry" placeholder="MM/YY" maxlength="5">
+                        </div>
+                        <div class="form-group">
+                            <label for="cardCvv">CVV</label>
+                            <input type="text" id="cardCvv" maxlength="4" pattern="[0-9]{3,4}">
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="notes">הערות</label>
@@ -260,5 +288,24 @@
     </div>
 
     <script src="payments.js"></script>
+    <script>
+    // פותח את המודל להוספת תשלום
+    document.getElementById('addPaymentBtn').onclick = function() {
+        document.getElementById('paymentModal').classList.add('active');
+    };
+    // סגירת המודל בכפתור X
+    document.querySelectorAll('.close-btn').forEach(btn => {
+        btn.onclick = function() {
+            btn.closest('.modal').classList.remove('active');
+        };
+    });
+    // הצגת שדות אשראי רק אם נבחר כרטיס אשראי
+    function toggleCreditFields() {
+        var method = document.getElementById('paymentMethod').value;
+        document.getElementById('creditFields').style.display = (method === 'credit') ? 'block' : 'none';
+    }
+    // הפעלת הפונקציה גם בטעינה ראשונית
+    document.addEventListener('DOMContentLoaded', toggleCreditFields);
+    </script>
 </body>
 </html> 
